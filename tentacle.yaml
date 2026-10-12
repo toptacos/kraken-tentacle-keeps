@@ -1,0 +1,37 @@
+name: keeps
+version: "0.1.0"
+license: free
+runtime: binary
+binary: handler.sh
+actions:
+  - ping
+  - where
+  - put
+  - get
+  - list
+  - has
+  - remove
+  - export
+  - import
+  - rotate
+  - finish
+  - clear
+timeout_sec: 20
+data_dir: data
+needs_docker: false
+platforms:
+  linux-amd64: { tested: true, binary: dist/keeps-linux-amd64 }
+  linux-arm64: { tested: false, binary: dist/keeps-linux-arm64 }
+  darwin-amd64: { tested: false, binary: dist/keeps-darwin-amd64 }
+  darwin-arm64: { tested: false, binary: dist/keeps-darwin-arm64 }
+  windows-amd64: { tested: false, binary: dist/keeps-windows-amd64.exe }
+  windows-arm64: { tested: false, binary: dist/keeps-windows-arm64.exe }
+hooks:
+  after_run:
+    - tentacle: redact-log
+      action: convert
+      optional: true
+      if: ok
+description: >
+  Encrypted local secret store. API keys, credentials, and small files.
+  AES-256-GCM at rest. No daemon. No catalog. No cloud.

@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.kraken/
+*.kraken.tgz
+.DS_Store
+e2e-results.log
+.ruff_cache/
+.mypy_cache/
